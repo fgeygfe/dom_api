@@ -48,7 +48,9 @@ pub fn Node::to_element(self : Node) -> Element? {
 // Cast implementations for DOM types
 
 ///|
-extern "js" fn checked_cast_document_ffi(value : @js.Value) -> @js.Nullable[Document] =
+extern "js" fn checked_cast_document_ffi(
+  value : @js.Value,
+) -> @js.Nullable[Document] =
   #| (x) => x instanceof Document ? x : null
 
 ///|
@@ -62,7 +64,9 @@ pub impl @js.Cast for Document with from(value) {
 }
 
 ///|
-extern "js" fn checked_cast_element_ffi(value : @js.Value) -> @js.Nullable[Element] =
+extern "js" fn checked_cast_element_ffi(
+  value : @js.Value,
+) -> @js.Nullable[Element] =
   #| (x) => x instanceof Element ? x : null
 
 ///|
@@ -76,7 +80,9 @@ pub impl @js.Cast for Element with from(value) {
 }
 
 ///|
-extern "js" fn checked_cast_html_element_ffi(value : @js.Value) -> @js.Nullable[HTMLElement] =
+extern "js" fn checked_cast_html_element_ffi(
+  value : @js.Value,
+) -> @js.Nullable[HTMLElement] =
   #| (x) => x instanceof HTMLElement ? x : null
 
 ///|
@@ -120,31 +126,52 @@ pub impl @js.Cast for Event with from(value) {
 // Document methods
 
 ///|
-pub extern "js" fn Document::get_element_by_id(self : Document, id : String) -> Element? =
+pub extern "js" fn Document::get_element_by_id(
+  self : Document,
+  id : String,
+) -> Element? =
   #| (doc, id) => doc.getElementById(id)
 
 ///|
-pub extern "js" fn Document::get_elements_by_tag_name(self : Document, tagName : String) -> NodeList =
+pub extern "js" fn Document::get_elements_by_tag_name(
+  self : Document,
+  tagName : String,
+) -> NodeList =
   #| (doc, tagName) => doc.getElementsByTagName(tagName)
 
 ///|
-pub extern "js" fn Document::get_elements_by_class_name(self : Document, className : String) -> NodeList =
+pub extern "js" fn Document::get_elements_by_class_name(
+  self : Document,
+  className : String,
+) -> NodeList =
   #| (doc, className) => doc.getElementsByClassName(className)
 
 ///|
-pub extern "js" fn Document::query_selector(self : Document, selector : String) -> Element? =
+pub extern "js" fn Document::query_selector(
+  self : Document,
+  selector : String,
+) -> Element? =
   #| (doc, selector) => doc.querySelector(selector)
 
 ///|
-pub extern "js" fn Document::query_selector_all(self : Document, selector : String) -> NodeList =
+pub extern "js" fn Document::query_selector_all(
+  self : Document,
+  selector : String,
+) -> NodeList =
   #| (doc, selector) => doc.querySelectorAll(selector)
 
 ///|
-pub extern "js" fn Document::create_element(self : Document, tagName : String) -> Element =
+pub extern "js" fn Document::create_element(
+  self : Document,
+  tagName : String,
+) -> Element =
   #| (doc, tagName) => doc.createElement(tagName)
 
 ///|
-pub extern "js" fn Document::create_text_node(self : Document, text : String) -> Node =
+pub extern "js" fn Document::create_text_node(
+  self : Document,
+  text : String,
+) -> Node =
   #| (doc, text) => doc.createTextNode(text)
 
 ///|
@@ -158,19 +185,32 @@ pub extern "js" fn Document::get_head(self : Document) -> HTMLElement? =
 // Element methods
 
 ///|
-pub extern "js" fn Element::get_attribute(self : Element, name : String) -> String? =
+pub extern "js" fn Element::get_attribute(
+  self : Element,
+  name : String,
+) -> String? =
   #| (elem, name) => elem.getAttribute(name)
 
 ///|
-pub extern "js" fn Element::set_attribute(self : Element, name : String, value : String) -> Unit =
+pub extern "js" fn Element::set_attribute(
+  self : Element,
+  name : String,
+  value : String,
+) -> Unit =
   #| (elem, name, value) => elem.setAttribute(name, value)
 
 ///|
-pub extern "js" fn Element::remove_attribute(self : Element, name : String) -> Unit =
+pub extern "js" fn Element::remove_attribute(
+  self : Element,
+  name : String,
+) -> Unit =
   #| (elem, name) => elem.removeAttribute(name)
 
 ///|
-pub extern "js" fn Element::has_attribute(self : Element, name : String) -> Bool =
+pub extern "js" fn Element::has_attribute(
+  self : Element,
+  name : String,
+) -> Bool =
   #| (elem, name) => elem.hasAttribute(name)
 
 ///|
@@ -190,23 +230,38 @@ pub extern "js" fn Element::get_class_name(self : Element) -> String =
   #| (elem) => elem.className
 
 ///|
-pub extern "js" fn Element::set_class_name(self : Element, className : String) -> Unit =
+pub extern "js" fn Element::set_class_name(
+  self : Element,
+  className : String,
+) -> Unit =
   #| (elem, className) => elem.className = className
 
 ///|
-pub extern "js" fn Element::add_class(self : Element, className : String) -> Unit =
+pub extern "js" fn Element::add_class(
+  self : Element,
+  className : String,
+) -> Unit =
   #| (elem, className) => elem.classList.add(className)
 
 ///|
-pub extern "js" fn Element::remove_class(self : Element, className : String) -> Unit =
+pub extern "js" fn Element::remove_class(
+  self : Element,
+  className : String,
+) -> Unit =
   #| (elem, className) => elem.classList.remove(className)
 
 ///|
-pub extern "js" fn Element::toggle_class(self : Element, className : String) -> Bool =
+pub extern "js" fn Element::toggle_class(
+  self : Element,
+  className : String,
+) -> Bool =
   #| (elem, className) => elem.classList.toggle(className)
 
 ///|
-pub extern "js" fn Element::contains_class(self : Element, className : String) -> Bool =
+pub extern "js" fn Element::contains_class(
+  self : Element,
+  className : String,
+) -> Bool =
   #| (elem, className) => elem.classList.contains(className)
 
 ///|
@@ -214,7 +269,10 @@ pub extern "js" fn Element::get_inner_html(self : Element) -> String =
   #| (elem) => elem.innerHTML
 
 ///|
-pub extern "js" fn Element::set_inner_html(self : Element, html : String) -> Unit =
+pub extern "js" fn Element::set_inner_html(
+  self : Element,
+  html : String,
+) -> Unit =
   #| (elem, html) => elem.innerHTML = html
 
 ///|
@@ -222,15 +280,24 @@ pub extern "js" fn Element::get_text_content(self : Element) -> String =
   #| (elem) => elem.textContent || ""
 
 ///|
-pub extern "js" fn Element::set_text_content(self : Element, text : String) -> Unit =
+pub extern "js" fn Element::set_text_content(
+  self : Element,
+  text : String,
+) -> Unit =
   #| (elem, text) => elem.textContent = text
 
 ///|
-pub extern "js" fn Element::query_selector(self : Element, selector : String) -> Element? =
+pub extern "js" fn Element::query_selector(
+  self : Element,
+  selector : String,
+) -> Element? =
   #| (elem, selector) => elem.querySelector(selector)
 
 ///|
-pub extern "js" fn Element::query_selector_all(self : Element, selector : String) -> NodeList =
+pub extern "js" fn Element::query_selector_all(
+  self : Element,
+  selector : String,
+) -> NodeList =
   #| (elem, selector) => elem.querySelectorAll(selector)
 
 // Node methods
@@ -240,7 +307,11 @@ pub extern "js" fn Node::append_child(self : Node, child : Node) -> Node =
   #| (parent, child) => parent.appendChild(child)
 
 ///|
-pub extern "js" fn Node::insert_before(self : Node, newNode : Node, referenceNode : Node?) -> Node =
+pub extern "js" fn Node::insert_before(
+  self : Node,
+  newNode : Node,
+  referenceNode : Node?,
+) -> Node =
   #| (parent, newNode, refNode) => parent.insertBefore(newNode, refNode)
 
 ///|
@@ -248,7 +319,11 @@ pub extern "js" fn Node::remove_child(self : Node, child : Node) -> Node =
   #| (parent, child) => parent.removeChild(child)
 
 ///|
-pub extern "js" fn Node::replace_child(self : Node, newChild : Node, oldChild : Node) -> Node =
+pub extern "js" fn Node::replace_child(
+  self : Node,
+  newChild : Node,
+  oldChild : Node,
+) -> Node =
   #| (parent, newChild, oldChild) => parent.replaceChild(newChild, oldChild)
 
 ///|
@@ -294,7 +369,9 @@ pub extern "js" fn HTMLElement::blur(self : HTMLElement) -> Unit =
   #| (elem) => elem.blur()
 
 ///|
-pub extern "js" fn HTMLElement::get_style(self : HTMLElement) -> CSSStyleDeclaration =
+pub extern "js" fn HTMLElement::get_style(
+  self : HTMLElement,
+) -> CSSStyleDeclaration =
   #| (elem) => elem.style
 
 ///|
@@ -326,7 +403,10 @@ pub extern "js" fn HTMLElement::get_scroll_top(self : HTMLElement) -> Double =
   #| (elem) => elem.scrollTop
 
 ///|
-pub extern "js" fn HTMLElement::set_scroll_top(self : HTMLElement, value : Double) -> Unit =
+pub extern "js" fn HTMLElement::set_scroll_top(
+  self : HTMLElement,
+  value : Double,
+) -> Unit =
   #| (elem, value) => elem.scrollTop = value
 
 ///|
@@ -334,7 +414,10 @@ pub extern "js" fn HTMLElement::get_scroll_left(self : HTMLElement) -> Double =
   #| (elem) => elem.scrollLeft
 
 ///|
-pub extern "js" fn HTMLElement::set_scroll_left(self : HTMLElement, value : Double) -> Unit =
+pub extern "js" fn HTMLElement::set_scroll_left(
+  self : HTMLElement,
+  value : Double,
+) -> Unit =
   #| (elem, value) => elem.scrollLeft = value
 
 // Event handling
@@ -358,7 +441,10 @@ pub extern "js" fn Element::remove_event_listener(
   #| (elem, type, listener, options) => elem.removeEventListener(type, listener, options)
 
 ///|
-pub extern "js" fn Element::dispatch_event(self : Element, event : Event) -> Bool =
+pub extern "js" fn Element::dispatch_event(
+  self : Element,
+  event : Event,
+) -> Bool =
   #| (elem, event) => elem.dispatchEvent(event)
 
 // Event methods
@@ -429,7 +515,10 @@ pub fn NodeList::to_array(self : NodeList) -> Array[Node] {
 // CSS Style Declaration methods
 
 ///|
-pub extern "js" fn CSSStyleDeclaration::get_property_value(self : CSSStyleDeclaration, property : String) -> String =
+pub extern "js" fn CSSStyleDeclaration::get_property_value(
+  self : CSSStyleDeclaration,
+  property : String,
+) -> String =
   #| (style, prop) => style.getPropertyValue(prop)
 
 ///|
@@ -442,33 +531,51 @@ pub extern "js" fn CSSStyleDeclaration::set_property(
   #| (style, prop, value, priority) => style.setProperty(prop, value, priority)
 
 ///|
-pub extern "js" fn CSSStyleDeclaration::remove_property(self : CSSStyleDeclaration, property : String) -> String =
+pub extern "js" fn CSSStyleDeclaration::remove_property(
+  self : CSSStyleDeclaration,
+  property : String,
+) -> String =
   #| (style, prop) => style.removeProperty(prop)
 
 // Utility functions for common CSS properties
 
 ///|
-pub fn CSSStyleDeclaration::set_display(self : CSSStyleDeclaration, value : String) -> Unit {
+pub fn CSSStyleDeclaration::set_display(
+  self : CSSStyleDeclaration,
+  value : String,
+) -> Unit {
   self.set_property("display", value)
 }
 
 ///|
-pub fn CSSStyleDeclaration::set_color(self : CSSStyleDeclaration, value : String) -> Unit {
+pub fn CSSStyleDeclaration::set_color(
+  self : CSSStyleDeclaration,
+  value : String,
+) -> Unit {
   self.set_property("color", value)
 }
 
 ///|
-pub fn CSSStyleDeclaration::set_background_color(self : CSSStyleDeclaration, value : String) -> Unit {
+pub fn CSSStyleDeclaration::set_background_color(
+  self : CSSStyleDeclaration,
+  value : String,
+) -> Unit {
   self.set_property("background-color", value)
 }
 
 ///|
-pub fn CSSStyleDeclaration::set_width(self : CSSStyleDeclaration, value : String) -> Unit {
+pub fn CSSStyleDeclaration::set_width(
+  self : CSSStyleDeclaration,
+  value : String,
+) -> Unit {
   self.set_property("width", value)
 }
 
 ///|
-pub fn CSSStyleDeclaration::set_height(self : CSSStyleDeclaration, value : String) -> Unit {
+pub fn CSSStyleDeclaration::set_height(
+  self : CSSStyleDeclaration,
+  value : String,
+) -> Unit {
   self.set_property("height", value)
 }
 

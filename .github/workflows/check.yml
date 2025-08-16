@@ -1,12 +1,8 @@
+
 name: check
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-  schedule:
-    - cron: "30 0 * * 1" # Every Monday at half past midnight UTC
+  workflow_dispatch:
 
 jobs:
   build:
