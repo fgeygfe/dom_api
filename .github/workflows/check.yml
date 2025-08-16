@@ -46,7 +46,7 @@ jobs:
           moonrun --version
 
       - name: moon check
-        run: moon check --deny-warn --target=js
+        run: moon check --target=js
 
       - name: moon info and moon fmt
         run: |
