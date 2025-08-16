@@ -45,6 +45,9 @@ jobs:
           moon version --all
           moonrun --version
 
+      - name: moon update
+        run: moon update
+
       - name: moon check
         run: moon check --target=js
 
