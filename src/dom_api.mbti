@@ -21,9 +21,8 @@ let window : @js.Value
 // Errors
 
 // Types and methods
-pub struct CSSStyleDeclaration(@js.Value)
+pub type CSSStyleDeclaration
 fn CSSStyleDeclaration::get_property_value(Self, String) -> String
-fn CSSStyleDeclaration::inner(Self) -> @js.Value
 fn CSSStyleDeclaration::remove_property(Self, String) -> String
 fn CSSStyleDeclaration::set_background_color(Self, String) -> Unit
 fn CSSStyleDeclaration::set_color(Self, String) -> Unit
@@ -32,7 +31,7 @@ fn CSSStyleDeclaration::set_height(Self, String) -> Unit
 fn CSSStyleDeclaration::set_property(Self, String, String, priority? : @js.Optional[String]) -> Unit
 fn CSSStyleDeclaration::set_width(Self, String) -> Unit
 
-pub struct Document(@js.Value)
+pub type Document
 fn Document::create_element(Self, String) -> Element
 fn Document::create_text_node(Self, String) -> Node
 fn Document::get_body(Self) -> HTMLElement?
@@ -40,12 +39,11 @@ fn Document::get_element_by_id(Self, String) -> Element?
 fn Document::get_elements_by_class_name(Self, String) -> NodeList
 fn Document::get_elements_by_tag_name(Self, String) -> NodeList
 fn Document::get_head(Self) -> HTMLElement?
-fn Document::inner(Self) -> @js.Value
 fn Document::query_selector(Self, String) -> Element?
 fn Document::query_selector_all(Self, String) -> NodeList
 impl @js.Cast for Document
 
-pub struct Element(@js.Value)
+pub type Element
 fn Element::add_class(Self, String) -> Unit
 fn Element::add_event_listener(Self, String, (Event) -> Unit, options? : @js.Optional[Bool]) -> Unit
 fn Element::contains_class(Self, String) -> Bool
@@ -57,7 +55,6 @@ fn Element::get_inner_html(Self) -> String
 fn Element::get_tag_name(Self) -> String
 fn Element::get_text_content(Self) -> String
 fn Element::has_attribute(Self, String) -> Bool
-fn Element::inner(Self) -> @js.Value
 fn Element::query_selector(Self, String) -> Self?
 fn Element::query_selector_all(Self, String) -> NodeList
 fn Element::remove_attribute(Self, String) -> Unit
@@ -68,25 +65,21 @@ fn Element::set_class_name(Self, String) -> Unit
 fn Element::set_id(Self, String) -> Unit
 fn Element::set_inner_html(Self, String) -> Unit
 fn Element::set_text_content(Self, String) -> Unit
-fn Element::to_html_element(Self) -> HTMLElement
-fn Element::to_node(Self) -> Node
 fn Element::toggle_class(Self, String) -> Bool
 impl @js.Cast for Element
 
-pub struct Event(@js.Value)
+pub type Event
 fn Event::get_current_target(Self) -> Element?
 fn Event::get_target(Self) -> Element?
 fn Event::get_type(Self) -> String
-fn Event::inner(Self) -> @js.Value
 fn Event::prevent_default(Self) -> Unit
 fn Event::stop_immediate_propagation(Self) -> Unit
 fn Event::stop_propagation(Self) -> Unit
 impl @js.Cast for Event
 
-pub struct HTMLCollection(@js.Value)
-fn HTMLCollection::inner(Self) -> @js.Value
+pub type HTMLCollection
 
-pub struct HTMLElement(Element)
+pub type HTMLElement
 fn HTMLElement::blur(Self) -> Unit
 fn HTMLElement::click(Self) -> Unit
 fn HTMLElement::focus(Self) -> Unit
@@ -99,13 +92,11 @@ fn HTMLElement::get_scroll_left(Self) -> Double
 fn HTMLElement::get_scroll_top(Self) -> Double
 fn HTMLElement::get_scroll_width(Self) -> Double
 fn HTMLElement::get_style(Self) -> CSSStyleDeclaration
-fn HTMLElement::inner(Self) -> Element
 fn HTMLElement::set_scroll_left(Self, Double) -> Unit
 fn HTMLElement::set_scroll_top(Self, Double) -> Unit
-fn HTMLElement::to_element(Self) -> Element
 impl @js.Cast for HTMLElement
 
-pub struct Node(@js.Value)
+pub type Node
 fn Node::append_child(Self, Self) -> Self
 fn Node::clone_node(Self, Bool) -> Self
 fn Node::get_child_nodes(Self) -> NodeList
@@ -114,17 +105,14 @@ fn Node::get_last_child(Self) -> Self?
 fn Node::get_next_sibling(Self) -> Self?
 fn Node::get_parent_node(Self) -> Self?
 fn Node::get_previous_sibling(Self) -> Self?
-fn Node::inner(Self) -> @js.Value
 fn Node::insert_before(Self, Self, Self?) -> Self
 fn Node::remove_child(Self, Self) -> Self
 fn Node::replace_child(Self, Self, Self) -> Self
-fn Node::to_element(Self) -> Element?
 impl @js.Cast for Node
 
-pub struct NodeList(@js.Value)
+pub type NodeList
 fn NodeList::for_each(Self, (Node) -> Unit) -> Unit
 fn NodeList::get(Self, Int) -> Node?
-fn NodeList::inner(Self) -> @js.Value
 fn NodeList::item(Self, Int) -> Node?
 fn NodeList::length(Self) -> Int
 fn NodeList::to_array(Self) -> Array[Node]
@@ -132,4 +120,12 @@ fn NodeList::to_array(Self) -> Array[Node]
 // Type aliases
 
 // Traits
+pub trait IsElement {
+}
+
+pub trait IsEvent {
+}
+
+pub trait IsNode {
+}
 
