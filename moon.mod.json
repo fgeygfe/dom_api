@@ -1,6 +1,6 @@
 {
-  "name": "dom_api",
-  "version": "0.0.1",
+  "name": "fgeygfe/dom_api",
+  "version": "0.1.0",
    "deps": {
     "rami3l/js-ffi": "0.3.1"
   },
