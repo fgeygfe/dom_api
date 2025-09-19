@@ -60,7 +60,7 @@ pub fn[Arg, Result] Value::apply(self : Value, args : Array[Arg]) -> Result {
 pub fn[Arg, Result] Value::apply_with_string(
   self : Value,
   key : String,
-  args : Array[Arg]
+  args : Array[Arg],
 ) -> Result {
   self.apply_ffi(Value::cast_from(key), Value::cast_from(args)).cast()
 }
@@ -70,7 +70,7 @@ pub fn[Arg, Result] Value::apply_with_string(
 pub fn[Arg, Result] Value::apply_with_symbol(
   self : Value,
   key : Symbol,
-  args : Array[Arg]
+  args : Array[Arg],
 ) -> Result {
   self.apply_ffi(Value::cast_from(key), Value::cast_from(args)).cast()
 }
@@ -80,7 +80,7 @@ pub fn[Arg, Result] Value::apply_with_symbol(
 pub fn[Arg, Result] Value::apply_with_index(
   self : Value,
   index : Int,
-  args : Array[Arg]
+  args : Array[Arg],
 ) -> Result {
   self.apply_ffi(Value::cast_from(index), Value::cast_from(args)).cast()
 }
@@ -96,7 +96,7 @@ pub fn[Arg, Result] Value::new(self : Value, args : Array[Arg]) -> Result {
 pub fn[Arg, Result] Value::new_with_string(
   self : Value,
   key : String,
-  args : Array[Arg]
+  args : Array[Arg],
 ) -> Result {
   self.new_ffi(Value::cast_from(key), Value::cast_from(args)).cast()
 }
@@ -106,7 +106,7 @@ pub fn[Arg, Result] Value::new_with_string(
 pub fn[Arg, Result] Value::new_with_symbol(
   self : Value,
   key : Symbol,
-  args : Array[Arg]
+  args : Array[Arg],
 ) -> Result {
   self.new_ffi(Value::cast_from(key), Value::cast_from(args)).cast()
 }
@@ -116,7 +116,7 @@ pub fn[Arg, Result] Value::new_with_symbol(
 pub fn[Arg, Result] Value::new_with_index(
   self : Value,
   index : Int,
-  args : Array[Arg]
+  args : Array[Arg],
 ) -> Result {
   self.new_ffi(Value::cast_from(index), Value::cast_from(args)).cast()
 }
@@ -130,7 +130,7 @@ pub fn Value::from_json(json : Json) -> Value raise {
 pub impl @json.FromJson for Value with from_json(json : Json, path) {
   match json {
     String(s) => Value::cast_from(s)
-    Number(n) => Value::cast_from(n)
+    Number(n, ..) => Value::cast_from(n)
     False => Value::cast_from(false)
     True => Value::cast_from(true)
     Null => Value::null()
